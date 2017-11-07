@@ -1,0 +1,22 @@
+HOSTNAME=$(hostname)
+DC_NAME=$(cat /etc/cybraics_dc_name)
+
+[Unit]
+Description=Uchiwa container
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker \
+  run \
+  -p 80:3000 \
+  -e API_HOST="${HOSTNAME}" \
+  -e SENSU_DC_NAME="${DC_NAME}" \
+  -e SENSU_HOSTNAME="${HOSTNAME}" \
+  --name sensu_uchiwa \
+  sstarcher/uchiwa
+ExecStop=/usr/bin/docker stop -t 2 sensu_uchiwa
+ExecStopPost=/usr/bin/docker rm sensu_uchiwa
+
+[Install]
+WantedBy=local.target

@@ -1,0 +1,20 @@
+HOSTNAME=$(hostname)
+
+[Unit]
+Description=Redis container
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker \
+  run \
+  --name sensu_server \
+  -e API_HOST="${HOSTNAME}" \
+  -e REDIS_HOST="${HOSTNAME}" \
+  -v /home/ubuntu/handlers:/etc/sensu/handlers \
+  704148062182.dkr.ecr.us-east-1.amazonaws.com/cybraics-sensu:0.1.0 server
+ExecStop=/usr/bin/docker stop -t 2 sensu_server
+ExecStopPost=/usr/bin/docker rm sensu_server
+
+[Install]
+WantedBy=local.target
