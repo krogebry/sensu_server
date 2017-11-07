@@ -21,3 +21,8 @@ push:
 	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_uchiwa:latest
 
 	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/redis
+
+pull:
+	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_server
+	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_uchiwa
+	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/redis
