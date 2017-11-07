@@ -11,7 +11,7 @@ ExecStart=/usr/bin/docker \
   --name sensu_api \
   -e REDIS_HOST="${HOSTNAME}" \
   -p 8080:4567 \
-  903369196314.dkr.ecr.us-east-1.amazonaws.com/cybraics-sensu:0.1.0 api
+  903369196314.dkr.ecr.us-east-1.amazonaws.com/sensu_server api
 ExecStop=/usr/bin/docker stop -t 2 sensu_api
 ExecStopPost=/usr/bin/docker rm sensu_api
 
