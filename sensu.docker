@@ -76,6 +76,8 @@ ENV DEFAULT_PLUGINS_REPO=sensu-plugins \
 RUN mkdir -p $CONFIG_DIR $CHECK_DIR $EXTENSION_DIR $PLUGINS_DIR $HANDLERS_DIR
 
 EXPOSE 4567
-VOLUME ["/etc/sensu/conf.d"]
+VOLUME ["/etc/sensu/conf.d", "/etc/sensu/handlers"]
+
+RUN sensu-install -p sensu-plugins-slack
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--", "/bin/start"]
