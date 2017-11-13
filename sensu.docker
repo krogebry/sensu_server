@@ -30,6 +30,7 @@ RUN \
 
 COPY templates /etc/sensu/templates
 COPY bin /bin/
+COPY bin/start.sensu /bin/start
 
 ENV DEFAULT_PLUGINS_REPO=sensu-plugins \
     DEFAULT_PLUGINS_VERSION=master \
