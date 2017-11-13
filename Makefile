@@ -1,4 +1,4 @@
-VERSION=0.2.1
+VERSION=0.2.2
 
 docker:
 	docker build -t sensu_server:${VERSION} -f sensu.docker .

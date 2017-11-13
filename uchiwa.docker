@@ -21,7 +21,8 @@ RUN \
     apt-get install -y uchiwa=${UCHIWA_VERSION} && \
     rm -rf /var/lib/apt/lists/*
 
-ADD bin /bin/
+# ADD bin /bin/
+COPY bin/start.uchiwa /bin/start
 ADD templates /config/
 
 EXPOSE 3000
