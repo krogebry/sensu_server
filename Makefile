@@ -28,4 +28,4 @@ pull:
 	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/redis
 
 login:
-	aws ecr get-login --no-include-email
+	`aws ecr get-login --no-include-email`
