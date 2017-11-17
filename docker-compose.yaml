@@ -1,0 +1,51 @@
+---
+version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: sensu.docker
+    links:
+      - redis
+    ports:
+      - '4567:4567'  
+    command: api
+  server:
+    build : 
+      context: .
+      dockerfile: sensu.docker 
+    links:
+      - api
+      - redis
+    volumes:
+      - ./handlers:/etc/sensu/handlers
+    command: server
+  client:
+    build: 
+      context: .
+      dockerfile: sensu.docker
+    links:
+      - redis
+    ports:
+      - '3030:4567'
+    command: client
+    environment:
+      CLIENT_NAME: test
+      TRANSPORT_NAME: redis
+      CLIENT_ADDRESS: 127.0.0.1
+      CLIENT_SUBSCRIPTIONS: all,default
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379'
+  uchiwa:
+    build:
+      context: .
+      dockerfile: uchiwa.docker
+    links:
+      - api    
+    ports:
+      - '80:3000'
+    environment:
+      SENSU_DC_NAME: test
+      SENSU_HOSTNAME: api

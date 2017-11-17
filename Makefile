@@ -1,4 +1,4 @@
-VERSION=0.2.1
+VERSION=0.2.2
 
 docker:
 	docker build -t sensu_server:${VERSION} -f sensu.docker .
@@ -6,26 +6,26 @@ docker:
 	docker pull redis
 
 tag:
-	docker tag sensu_server:${VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_server:${VERSION}
-	docker tag uchiwa:${VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_uchiwa:${VERSION}
-	docker tag redis ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/redis
+	docker tag sensu_server:${VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_server:${VERSION}
+	docker tag uchiwa:${VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_uchiwa:${VERSION}
+	docker tag redis ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/redis
 
-	docker tag sensu_server:${VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_server:latest
-	docker tag uchiwa:${VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_uchiwa:latest
+	docker tag sensu_server:${VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_server:latest
+	docker tag uchiwa:${VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_uchiwa:latest
 
 push:
-	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_server:${VERSION}
-	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_uchiwa:${VERSION}
+	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_server:${VERSION}
+	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_server:latest
 
-	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_server:latest
-	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_uchiwa:latest
+	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_uchiwa:${VERSION}
+	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_uchiwa:latest
 
-	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/redis
+	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/redis
 
 pull:
-	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_server
-	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/sensu_uchiwa
-	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/redis
+	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_server
+	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/sensu_uchiwa
+	docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/redis
 
 login:
 	`aws ecr get-login --no-include-email`

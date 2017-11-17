@@ -1,7 +1,8 @@
 {
   "client": {
     "socket": {
-      "bind": {{ .CLIENT_BIND | quote }}
+      "bind": {{ .CLIENT_BIND | quote }},
+      "port": 4567
     },
     "name": {{ default .HOSTNAME .CLIENT_NAME | quote }},
     "address": {{ .CLIENT_ADDRESS | quote }},

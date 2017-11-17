@@ -30,6 +30,7 @@ RUN \
 
 COPY templates /etc/sensu/templates
 COPY bin /bin/
+COPY bin/start.sensu /bin/start
 
 ENV DEFAULT_PLUGINS_REPO=sensu-plugins \
     DEFAULT_PLUGINS_VERSION=master \
@@ -37,7 +38,7 @@ ENV DEFAULT_PLUGINS_REPO=sensu-plugins \
     #Client Config
     CLIENT_SUBSCRIPTIONS=all,default \
     CLIENT_BIND=127.0.0.1 \
-    CLIENT_DEREGISTER=true \
+    CLIENT_DEREGISTER=false \
 
     #Transport
     TRANSPORT_NAME=redis \
@@ -56,7 +57,7 @@ ENV DEFAULT_PLUGINS_REPO=sensu-plugins \
     REDIS_PORT=6379 \
     REDIS_DB=0 \
     REDIS_AUTO_RECONNECT=true \
-    REDIS_RECONNECT_ON_ERROR=false \
+    REDIS_RECONNECT_ON_ERROR=true \
 
     #Common Config
     RUNTIME_INSTALL='' \
